@@ -1,0 +1,25 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    
+    // Helper function for authentication
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // Helper function to validate uploaded images (size under 10MB, image content type)
+    function isValidImage() {
+      return request.resource.size < 10 * 1024 * 1024
+          && request.resource.contentType.matches('image/.*');
+    }
+
+    // Publicly accessible storage paths:
+    // logos, projects, gallery, services, materials, site, reviews
+    match /{allPaths=**} {
+      // Anyone can read images
+      allow read: if true;
+      // Only authenticated admin can upload or delete images
+      allow write, delete: if isAuthenticated() && (request.method == 'delete' || isValidImage());
+    }
+  }
+}

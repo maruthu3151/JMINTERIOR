@@ -1,0 +1,65 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper function to check if user is authenticated
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // Site Settings: Anyone can read, only authenticated admin can write
+    match /siteSettings/{document} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
+
+    // Projects: Anyone can read, only authenticated admin can create/update/delete
+    match /projects/{projectId} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
+
+    // Gallery: Anyone can read, only authenticated admin can write
+    match /gallery/{imageId} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
+
+    // Services: Anyone can read, only authenticated admin can write
+    match /services/{serviceId} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
+
+    // Materials: Anyone can read, only authenticated admin can write
+    match /materials/{materialId} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
+
+    // Reviews: Anyone can read, only authenticated admin can write
+    match /reviews/{reviewId} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
+
+    // Appointments: Anyone can create a booking; only authenticated admin can read, update, or delete
+    match /appointments/{appointmentId} {
+      allow create: if true;
+      allow read, update, delete: if isAuthenticated();
+    }
+
+    // Contact Messages: Anyone can submit a message; only authenticated admin can read, update, or delete
+    match /messages/{messageId} {
+      allow create: if true;
+      allow read, update, delete: if isAuthenticated();
+    }
+
+    // Users / Admin Profile: Only authenticated admin can read or write
+    match /users/{userId} {
+      // Allow read for username resolution during login
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
+  }
+}
