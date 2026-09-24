@@ -6,9 +6,6 @@ import {
   Mail,
   MapPin,
   MessageCircle,
-  Instagram,
-  Facebook,
-  Youtube,
   Shield,
 } from 'lucide-react';
 import { useSettings } from '../../context/SettingsContext';
