@@ -1,4 +1,3 @@
-```tsx
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {
@@ -7,6 +6,9 @@ import {
   MapPin,
   MessageCircle,
   Shield,
+  Camera,
+  Users,
+  Play,
 } from 'lucide-react';
 import { useSettings } from '../../context/SettingsContext';
 
@@ -19,6 +21,7 @@ export const Footer: React.FC = () => {
 
   const companyName = settings?.companyName || 'JM INTERIOR';
   const logoUrl = settings?.logoUrl || '';
+
   const description =
     settings?.footerText ||
     settings?.description ||
@@ -67,9 +70,10 @@ export const Footer: React.FC = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Instagram"
+                  title="Instagram"
                   className="w-8 h-8 rounded-full bg-stone-800 hover:bg-stone-700 flex items-center justify-center transition"
                 >
-                  <Instagram className="w-4 h-4" />
+                  <Camera className="w-4 h-4" />
                 </a>
               )}
 
@@ -79,9 +83,10 @@ export const Footer: React.FC = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Facebook"
+                  title="Facebook"
                   className="w-8 h-8 rounded-full bg-stone-800 hover:bg-stone-700 flex items-center justify-center transition"
                 >
-                  <Facebook className="w-4 h-4" />
+                  <Users className="w-4 h-4" />
                 </a>
               )}
 
@@ -91,9 +96,10 @@ export const Footer: React.FC = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="YouTube"
+                  title="YouTube"
                   className="w-8 h-8 rounded-full bg-stone-800 hover:bg-stone-700 flex items-center justify-center transition"
                 >
-                  <Youtube className="w-4 h-4" />
+                  <Play className="w-4 h-4" />
                 </a>
               )}
 
@@ -103,6 +109,7 @@ export const Footer: React.FC = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="WhatsApp"
+                  title="WhatsApp"
                   className="w-8 h-8 rounded-full bg-stone-800 hover:bg-emerald-700 flex items-center justify-center transition"
                 >
                   <MessageCircle className="w-4 h-4" />
@@ -121,31 +128,46 @@ export const Footer: React.FC = () => {
             <ul className="space-y-2.5 text-sm">
 
               <li>
-                <Link to="/projects" className="hover:text-stone-100 transition">
+                <Link
+                  to="/projects"
+                  className="hover:text-stone-100 transition"
+                >
                   Portfolio Projects
                 </Link>
               </li>
 
               <li>
-                <Link to="/gallery" className="hover:text-stone-100 transition">
+                <Link
+                  to="/gallery"
+                  className="hover:text-stone-100 transition"
+                >
                   Visual Gallery
                 </Link>
               </li>
 
               <li>
-                <Link to="/services" className="hover:text-stone-100 transition">
+                <Link
+                  to="/services"
+                  className="hover:text-stone-100 transition"
+                >
                   Interior Services
                 </Link>
               </li>
 
               <li>
-                <Link to="/materials" className="hover:text-stone-100 transition">
+                <Link
+                  to="/materials"
+                  className="hover:text-stone-100 transition"
+                >
                   Wood & Materials
                 </Link>
               </li>
 
               <li>
-                <Link to="/about" className="hover:text-stone-100 transition">
+                <Link
+                  to="/about"
+                  className="hover:text-stone-100 transition"
+                >
                   About K. Selvam
                 </Link>
               </li>
@@ -247,4 +269,3 @@ export const Footer: React.FC = () => {
 };
 
 export default Footer;
-```
